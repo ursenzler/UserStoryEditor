@@ -8,7 +8,7 @@
         [Fact]
         public void XUnitWorks()
         {
-            1.Should().NotBe(1);
+            1.Should().Be(1);
         }
     }
 }

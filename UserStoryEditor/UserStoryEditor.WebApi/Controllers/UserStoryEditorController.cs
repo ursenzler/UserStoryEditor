@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using UserStoryEditor.Core;
 
-    [Route("api/[controller]")]
+    [Route("api/userstoryeditor")]
     [ApiController]
     public class UserStoryEditorController : ControllerBase
     {
