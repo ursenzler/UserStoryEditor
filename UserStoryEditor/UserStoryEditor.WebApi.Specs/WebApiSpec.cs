@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.DependencyInjection;
     using UserStoryEditor.Core;
+    using UserStoryEditor.Core.Operation;
     using Xbehave;
 
     public abstract class WebsiteApiSpec
@@ -22,7 +23,7 @@
                     serverHostBuilder
                         .ConfigureServices(s
                             => s
-                                .AddSingleton(new UserStoryEditor()))
+                                .AddSingleton(new Backlog()))
                         .UseStartup<Startup>();
 
                     this.server = new TestServer(serverHostBuilder);

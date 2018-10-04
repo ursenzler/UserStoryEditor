@@ -6,33 +6,31 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using UserStoryEditor.Core;
+    using UserStoryEditor.Core.Operation;
 
     [Route("api/userstoryeditor")]
     [ApiController]
     public class UserStoryEditorController : ControllerBase
     {
-        private readonly UserStoryEditor userStoryEditor;
+        private readonly Backlog backlog;
 
         public UserStoryEditorController(
-            UserStoryEditor userStoryEditor)
+            Backlog backlog)
         {
-            this.userStoryEditor = userStoryEditor;
+            this.backlog = backlog;
         }
 
         [HttpGet("getestimation")]
         public ActionResult<int> GetEstimation()
         {
-            return this.userStoryEditor
+            return this.backlog
                 .GetEstimation();
         }
 
         [HttpPost("adduserstory")]
         public object AddUserStory([FromBody] UserStory userStory)
         {
-            this.userStoryEditor
-                .AddUserStory(
-                    userStory.Title);
-
+            
             return this.Ok();
         }
     }

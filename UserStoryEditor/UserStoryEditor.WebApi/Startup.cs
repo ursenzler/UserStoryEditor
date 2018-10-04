@@ -6,6 +6,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using UserStoryEditor.Core;
+    using UserStoryEditor.Core.Operation;
 
     public class Startup
     {
@@ -22,8 +23,8 @@
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.Add(new ServiceDescriptor(
-                typeof(UserStoryEditor),
-                typeof(UserStoryEditor),
+                typeof(Backlog),
+                typeof(Backlog),
                 ServiceLifetime.Singleton));
         }
 
