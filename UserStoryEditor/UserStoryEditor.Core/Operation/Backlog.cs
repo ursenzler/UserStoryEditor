@@ -18,14 +18,14 @@
                 .Select(x => x.Id)
                 .ToArray();
 
-            var e = this.estimates.GetEstimatesNew(
+            var mappedEstimates = this.estimates.GetEstimatesNew(
                 userStoryIds)
                 .ToArray();
 
             return StoryEstimationCalculator
                 .Calculate(
-                    userStoryIds,
-                    e,
+                    this.relations.GetAllLeafs(userStoryIds).ToArray(),
+                    mappedEstimates,
                     this.relations.GetAll().ToArray());
         }
 

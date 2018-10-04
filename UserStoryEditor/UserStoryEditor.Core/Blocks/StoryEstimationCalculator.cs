@@ -12,23 +12,39 @@
         }
 
         public static int Calculate(
-            Guid[] userStoryIds,
-            (Guid UserStoryId, int? Estimate)[] estimates,
-            (Guid Parent, Guid Child)[] relations)
+            Guid[] initialLeafIds,
+            (Guid userStoryId, int? estimate)[] estimates,
+            (Guid parent, Guid child)[] relations)
         {
-            return userStoryIds
-                .Where(
-                    x => relations.All(r => x != r.Parent)
-                         || relations
-                             .Where(r => r.Parent == x)
-                             .Select(r => r.Child)
-                             .Select(child => estimates
-                                 .Single(y => y.UserStoryId == child)
-                                 .Estimate)
-                             .Any(u => !u.HasValue))
-                .Aggregate(
-                    0,
-                    (v, a) => v += estimates.Single(x => x.UserStoryId == a).Estimate ?? 0);
+            return Prune(initialLeafIds, estimates, relations)
+                .Sum(id => estimates.Single(e => e.userStoryId == id).estimate ?? 0);
+        }
+
+        public static IReadOnlyCollection<Guid> Prune(
+            Guid[] leafs,
+            (Guid userStoryId, int? estimate)[] estimates,
+            (Guid parent, Guid child)[] relations)
+        {
+            bool done;
+            do
+            {
+                var offenders = leafs
+                    .Where(l => estimates
+                        .Contains((l, default(int?))));
+                var offenderParents = relations
+                    .Where(r => offenders.Contains(r.child))
+                    .Select(o => o.parent)
+                    .ToArray();
+                var unwantedChildren = relations
+                    .Where(r => offenderParents.Contains(r.parent))
+                    .Select(r => r.child);
+                leafs = leafs
+                    .Concat(offenderParents)
+                    .Except(unwantedChildren)
+                    .ToArray();
+                done = !offenderParents.Any();
+            } while (!done);
+            return leafs;
         }
     }
 }

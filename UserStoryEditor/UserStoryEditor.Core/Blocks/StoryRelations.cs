@@ -17,7 +17,7 @@
 
         public IReadOnlyCollection<Guid> GetAllLeafs(IEnumerable<Guid> storyIds)
         {
-            return storyIds.Where(s => this.relations.All(x => x.parent != s)).ToArray();
+            return storyIds.Where(s => this.relations.All(r => r.parent != s)).ToArray();
         }
 
         public List<(Guid parent, Guid child)> GetAll()
