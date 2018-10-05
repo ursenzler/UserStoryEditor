@@ -18,17 +18,32 @@
                 .Select(x => x.Id)
                 .ToArray();
 
+            var relationsArray = this.relations.GetAll().ToArray();
+
+            var storyLeaves = StoryTreeGenerator
+                .GetLeaves(
+                    userStoryIds,
+                    relationsArray);
+
             var mappedEstimates = this.estimates.GetEstimatesNew(
                 userStoryIds)
                 .ToArray();
 
+            var prunedLeaves = StoryTreePruner
+                .Prune(
+                    storyLeaves,
+                    mappedEstimates,
+                    relationsArray)
+                .ToArray();
+
             return StoryEstimationCalculator
                 .Calculate(
-                    this.relations.GetAllLeafs(userStoryIds).ToArray(),
-                    mappedEstimates,
-                    this.relations.GetAll().ToArray());
+                    prunedLeaves,
+                    mappedEstimates);
         }
 
+        // TODO: "add user story"-method without estimate
+        // TODO: replace "no estimate"-state (currently null-entry) with "no entry in estimates" 
         public void AddUserStory(
             Guid id,
             string title,
