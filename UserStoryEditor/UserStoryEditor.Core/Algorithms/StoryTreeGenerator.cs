@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 
-namespace UserStoryEditor.Core.Blocks
+namespace UserStoryEditor.Core.Algorithms
 {
     public static class StoryTreeGenerator
     {
         public static Guid[] GetLeaves(
-            Guid[] userStoryIds,
+            this Guid[] userStoryIds,
             (Guid parent, Guid child)[] relations)
         {
             return userStoryIds

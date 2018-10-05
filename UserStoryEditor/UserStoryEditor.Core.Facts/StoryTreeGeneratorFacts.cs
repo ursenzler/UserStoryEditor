@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using UserStoryEditor.Core.Algorithms;
 using UserStoryEditor.Core.Blocks;
 using UserStoryEditor.Core.Specs;
 using Xunit;
@@ -11,8 +12,8 @@ namespace UserStoryEditor.Core.Facts
         [Fact]
         public void ReturnsEmptyList_WhenGettingLeavesFromEmptyList()
         {
-            StoryTreeGenerator
-                .GetLeaves(new Guid[0], new (Guid, Guid)[0])
+            new Guid[0]
+                .GetLeaves(new (Guid, Guid)[0])
                 .Should().BeEmpty();
         }
 
@@ -21,8 +22,8 @@ namespace UserStoryEditor.Core.Facts
         {
             var singleLeafTree = new[]{GuidGenerator.Create("1")};
 
-            StoryTreeGenerator
-                .GetLeaves(singleLeafTree, new (Guid, Guid)[0])
+            singleLeafTree
+                .GetLeaves(new (Guid, Guid)[0])
                 .Should().BeEquivalentTo(singleLeafTree);
         }
 
@@ -35,8 +36,8 @@ namespace UserStoryEditor.Core.Facts
                 GuidGenerator.Create("B")
             };
 
-            StoryTreeGenerator
-                .GetLeaves(flatTree, new (Guid, Guid)[0])
+            flatTree
+                .GetLeaves(new (Guid, Guid)[0])
                 .Should().BeEquivalentTo(flatTree);
         }
 
@@ -52,8 +53,8 @@ namespace UserStoryEditor.Core.Facts
             var relations = TestArrayParser.GenerateRelations(stringishRelations);
             var leaves = TestArrayParser.GenerateStoryIds(stringishExpectedLeaves);
 
-            StoryTreeGenerator
-                .GetLeaves(userStoryIds, relations)
+            userStoryIds
+                .GetLeaves(relations)
                 .Should().BeEquivalentTo(leaves);
         }
     }

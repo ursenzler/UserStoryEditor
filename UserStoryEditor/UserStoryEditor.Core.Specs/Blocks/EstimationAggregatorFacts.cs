@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using FluentAssertions;
+using UserStoryEditor.Core.Algorithms;
 using UserStoryEditor.Core.Blocks;
-using UserStoryEditor.Core.Specs;
 using Xunit;
 
-namespace UserStoryEditor.Core.Facts
+namespace UserStoryEditor.Core.Specs.Blocks
 {
-    public class StoryEstimationCalculatorFacts
+    public class EstimationAggregatorFacts
     {
         [Fact]
         public void ReturnsZero_WhenNoUserStories()
         {
-            StoryEstimationCalculator.Calculate(
-                new Guid[0],
-                new (Guid UserStoryId, int? Estimate)[0])
+            EstimationAggregator
+                .Calculate(
+                    new Guid[0],
+                    new (Guid UserStoryId, int? Estimate)[0],
+                    new (Guid, Guid)[0])
                 .Should().Be(0);
         }
 
@@ -24,10 +24,11 @@ namespace UserStoryEditor.Core.Facts
         {
             var userStoryId = GuidGenerator.Create("1");
 
-            StoryEstimationCalculator
+            EstimationAggregator
                 .Calculate(
                     new[] { userStoryId },
-                new[] { (userStoryId, (int?)5) })
+                    new[] { (userStoryId, (int?)5) },
+                    new (Guid, Guid)[0])
                 .Should().Be(5);
         }
 
@@ -37,14 +38,15 @@ namespace UserStoryEditor.Core.Facts
             var userStoryId1 = GuidGenerator.Create("1");
             var userStoryId2 = GuidGenerator.Create("2");
 
-            StoryEstimationCalculator
+            EstimationAggregator
                 .Calculate(
                     new[] { userStoryId1, userStoryId2 },
-                new[]
+                    new[]
                     {
                         (userStoryId1, (int?)5),
                         (userStoryId2, (int?)8)
-                    })
+                    },
+                    new (Guid, Guid)[0])
                 .Should().Be(13);
         }
 
@@ -55,14 +57,19 @@ namespace UserStoryEditor.Core.Facts
             var userStoryId2 = GuidGenerator.Create("2");
             var userStoryId3 = GuidGenerator.Create("3");
 
-            StoryEstimationCalculator
+            EstimationAggregator
                 .Calculate(
-                    new[] { userStoryId2, userStoryId3 },
-                new[]
+                    new[] { userStoryId1, userStoryId2, userStoryId3 },
+                    new[]
                     {
                         (userStoryId1, (int?)5),
                         (userStoryId2, (int?)8),
                         (userStoryId3, (int?)3)
+                    },
+                    new []
+                    {
+                        (userStoryId1, userStoryId2),
+                        (userStoryId1, userStoryId3)
                     })
                 .Should().Be(11);
         }

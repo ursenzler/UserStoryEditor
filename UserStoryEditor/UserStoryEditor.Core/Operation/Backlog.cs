@@ -1,4 +1,6 @@
-﻿namespace UserStoryEditor.Core.Operation
+﻿using UserStoryEditor.Core.Algorithms;
+
+namespace UserStoryEditor.Core.Operation
 {
     using System;
     using System.Collections.Generic;
@@ -17,29 +19,15 @@
                 .GetAll()
                 .Select(x => x.Id)
                 .ToArray();
-
-            var relationsArray = this.relations.GetAll().ToArray();
-
-            var storyLeaves = StoryTreeGenerator
-                .GetLeaves(
-                    userStoryIds,
-                    relationsArray);
-
             var mappedEstimates = this.estimates.GetEstimatesNew(
                 userStoryIds)
                 .ToArray();
 
-            var prunedLeaves = StoryTreePruner
-                .Prune(
-                    storyLeaves,
-                    mappedEstimates,
-                    relationsArray)
-                .ToArray();
-
-            return StoryEstimationCalculator
+            return EstimationAggregator
                 .Calculate(
-                    prunedLeaves,
-                    mappedEstimates);
+                    userStoryIds,
+                    mappedEstimates,
+                    this.relations.GetAll().ToArray());
         }
 
         // TODO: "add user story"-method without estimate

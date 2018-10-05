@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UserStoryEditor.Core.Blocks
+namespace UserStoryEditor.Core.Algorithms
 {
     public static class StoryTreePruner
     {
         public static IReadOnlyCollection<Guid> Prune(
-            Guid[] leafs,
+            this Guid[] leafs,
             (Guid userStoryId, int? estimate)[] estimates,
             (Guid parent, Guid child)[] relations)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using UserStoryEditor.Core.Algorithms;
 using UserStoryEditor.Core.Blocks;
 using UserStoryEditor.Core.Specs;
 using Xunit;
@@ -11,8 +12,8 @@ namespace UserStoryEditor.Core.Facts
         [Fact]
         public void ReturnsEmptyTree_WhenPruningEmptyTree()
         {
-            StoryTreePruner
-                .Prune(new Guid[0], new (Guid, int?)[0], new (Guid, Guid)[0])
+            new Guid[0]
+                .Prune(new (Guid, int?)[0], new (Guid, Guid)[0])
                 .Should().BeEmpty();
         }
 
@@ -21,8 +22,8 @@ namespace UserStoryEditor.Core.Facts
         {
             var userStoryId = GuidGenerator.Create("1");
 
-            StoryTreePruner
-                .Prune(new[] {userStoryId}, new (Guid, int?)[0], new (Guid, Guid)[0])
+            new[] {userStoryId}
+                .Prune(new (Guid, int?)[0], new (Guid, Guid)[0])
                 .Should().BeEquivalentTo(new [] {userStoryId});
         }
 
@@ -32,14 +33,12 @@ namespace UserStoryEditor.Core.Facts
             var userStoryId1 = GuidGenerator.Create("1");
             var userStoryId2 = GuidGenerator.Create("2");
 
-            StoryTreePruner
-                .Prune(
-                    new[]
-                    {
-                        userStoryId1,
-                        userStoryId2
-                    },
-                    new (Guid, int?)[0], 
+            new[]
+                {
+                    userStoryId1,
+                    userStoryId2
+                }
+                .Prune(new (Guid, int?)[0], 
                     new (Guid, Guid)[0])
                 .Should().BeEquivalentTo(new[]
                 {
@@ -69,8 +68,8 @@ namespace UserStoryEditor.Core.Facts
             var relations = TestArrayParser.GenerateRelations(stringishRelations);
             var expectedLeafIds = TestArrayParser.GenerateStoryIds(stringishExpectedLeaves);
 
-            StoryTreePruner
-                .Prune(leafIds, estimates, relations)
+            leafIds
+                .Prune(estimates, relations)
                 .Should().BeEquivalentTo(expectedLeafIds);
         }
     }
