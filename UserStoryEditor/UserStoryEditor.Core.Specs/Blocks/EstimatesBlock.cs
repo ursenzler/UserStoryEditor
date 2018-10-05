@@ -1,10 +1,10 @@
 ﻿namespace UserStoryEditor.Core.Specs.Blocks
 {
     using FluentAssertions;
-    using UserStoryEditor.Core.Blocks;
+    using Core.Blocks;
     using Xbehave;
 
-    public class EstimatesManagement
+    public class EstimatesBlock
     {
         [Scenario]
         public void SetEstimate(

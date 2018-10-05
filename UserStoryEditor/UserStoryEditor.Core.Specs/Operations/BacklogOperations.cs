@@ -1,30 +1,29 @@
-﻿namespace UserStoryEditor.Core.Specs.Operations
-{
-    using System;
-    using System.Reflection;
-    using FluentAssertions;
-    using UserStoryEditor.Core.Operation;
-    using Xbehave;
+﻿using System;
+using FluentAssertions;
+using UserStoryEditor.Core.Operation;
+using Xbehave;
 
-    public class Estimation
+namespace UserStoryEditor.Core.Specs.Operations
+{
+    public class BacklogOperations
     {
         [Scenario]
         public void AddUserStory(
-            Backlog editor)
+            Backlog backlog)
         {
             Guid userStoryId = Guid.NewGuid();
 
             "establish a Backlog".x(()
-                => editor = new Backlog());
+                => backlog = new Backlog());
 
             "when I add a user story with an estimate".x(()
-                => editor.AddUserStory(
+                => backlog.AddUserStory(
                     userStoryId,
                     "some title",
                     5));
 
             "then the sum of all estimates should be 5".x(()
-                => editor.GetEstimation().Should().Be(5));
+                => backlog.GetEstimation().Should().Be(5));
         }
 
         [Scenario]

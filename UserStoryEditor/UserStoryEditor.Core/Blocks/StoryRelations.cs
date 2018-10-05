@@ -20,7 +20,7 @@
             return storyIds.Where(s => this.relations.All(r => r.parent != s)).ToArray();
         }
 
-        public List<(Guid parent, Guid child)> GetAll()
+        public IReadOnlyCollection<(Guid parent, Guid child)> GetAll()
         {
             return this.relations;
         }

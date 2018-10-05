@@ -1,12 +1,11 @@
-﻿namespace UserStoryEditor.Core.Specs.Blocks
-{
-    using System;
-    using FluentAssertions;
-    using UserStoryEditor.Core.Blocks;
-    using UserStoryEditor.Core.Operation;
-    using Xbehave;
+﻿using System;
+using FluentAssertions;
+using UserStoryEditor.Core.Blocks;
+using Xbehave;
 
-    public class UserStoryManagement
+namespace UserStoryEditor.Core.Specs.Blocks
+{
+    public class UserStoriesBlock
     {
         [Scenario]
         public void AddUserStory(

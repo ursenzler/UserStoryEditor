@@ -1,4 +1,6 @@
-﻿namespace UserStoryEditor.Core.Operation
+﻿using UserStoryEditor.Core.Algorithms;
+
+namespace UserStoryEditor.Core.Operation
 {
     using System;
     using System.Collections.Generic;
@@ -17,18 +19,19 @@
                 .GetAll()
                 .Select(x => x.Id)
                 .ToArray();
-
             var mappedEstimates = this.estimates.GetEstimatesNew(
                 userStoryIds)
                 .ToArray();
 
-            return StoryEstimationCalculator
+            return EstimationAggregator
                 .Calculate(
-                    this.relations.GetAllLeafs(userStoryIds).ToArray(),
+                    userStoryIds,
                     mappedEstimates,
                     this.relations.GetAll().ToArray());
         }
 
+        // TODO: "add user story"-method without estimate
+        // TODO: replace "no estimate"-state (currently null-entry) with "no entry in estimates" 
         public void AddUserStory(
             Guid id,
             string title,
