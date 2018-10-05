@@ -1,11 +1,10 @@
 ﻿using System;
 using FluentAssertions;
 using UserStoryEditor.Core.Algorithms;
-using UserStoryEditor.Core.Blocks;
 using UserStoryEditor.Core.Specs;
 using Xunit;
 
-namespace UserStoryEditor.Core.Facts
+namespace UserStoryEditor.Core.Facts.Algorithms
 {
     public class StoryTreePrunerFacts
     {
