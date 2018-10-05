@@ -8,6 +8,8 @@ using Xunit;
 
 namespace UserStoryEditor.Core.Facts
 {
+    using UserStoryEditor.Core.Blocks.Estimations;
+
     public class StoryEstimationCalculatorFacts
     {
         [Fact]
@@ -105,7 +107,7 @@ namespace UserStoryEditor.Core.Facts
                         userStoryId1,
                         userStoryId2
                     },
-                    new (Guid, int?)[0], 
+                    new (Guid, int?)[0],
                     new (Guid, Guid)[0])
                 .Should().BeEquivalentTo(new[]
                 {
@@ -122,6 +124,7 @@ namespace UserStoryEditor.Core.Facts
         [InlineData("8;9;2", "A5;13;28;8-;96", "A1;A2;18;19", "1;2")]
         [InlineData("8;9;2", "A5;1-;28;8-;96", "A1;A2;18;19", "A")]
         [InlineData("8;9;2;B", "A-;1-;28;8-;96;B4", "A1;A2;18;19", "A;B")]
+        //[InlineData("A;B;C;D;E", "A8;B-;C5;D3;E4", "AB;AC;CD;CE", "A")]
         public void Rindsplätzli2(
             string stringishLeaves,
             string stringishEstimates,

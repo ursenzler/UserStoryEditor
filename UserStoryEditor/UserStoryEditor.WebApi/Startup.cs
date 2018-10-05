@@ -22,10 +22,7 @@
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.Add(new ServiceDescriptor(
-                typeof(Backlog),
-                typeof(Backlog),
-                ServiceLifetime.Singleton));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

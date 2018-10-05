@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 
 namespace UserStoryEditor.WebApi
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using UserStoryEditor.Core;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -19,6 +22,8 @@ namespace UserStoryEditor.WebApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureServices(s =>
+                    s.AddSingleton(x => new RootFactory()))
                 .UseStartup<Startup>();
     }
 }

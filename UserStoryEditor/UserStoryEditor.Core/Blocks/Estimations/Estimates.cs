@@ -1,4 +1,4 @@
-﻿namespace UserStoryEditor.Core.Blocks
+﻿namespace UserStoryEditor.Core.Blocks.Estimations
 {
     using System;
     using System.Collections.Generic;

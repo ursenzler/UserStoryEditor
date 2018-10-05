@@ -3,6 +3,7 @@
     using System;
     using FluentAssertions;
     using UserStoryEditor.Core.Blocks;
+    using UserStoryEditor.Core.Blocks.UserStoryData;
     using UserStoryEditor.Core.Operation;
     using Xbehave;
 

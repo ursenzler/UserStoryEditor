@@ -1,4 +1,4 @@
-﻿namespace UserStoryEditor.Core.Blocks
+﻿namespace UserStoryEditor.Core.Blocks.Estimations
 {
     using System;
     using System.Collections.Generic;
@@ -6,18 +6,24 @@
 
     public static class StoryEstimationCalculator
     {
-        public static int Calculate(IEnumerable<int> estimates)
-        {
-            return estimates.Sum();
-        }
-
         public static int Calculate(
             Guid[] initialLeafIds,
             (Guid userStoryId, int? estimate)[] estimates,
-            (Guid parent, Guid child)[] relations)
+            (Guid parent, Guid child)[] relations,
+            Strategy strategy = Strategy.Sum)
         {
-            return Prune(initialLeafIds, estimates, relations)
-                .Sum(id => estimates.Single(e => e.userStoryId == id).estimate ?? 0);
+            if (strategy == Strategy.Sum)
+            {
+                return Prune(
+                        initialLeafIds,
+                        estimates,
+                        relations)
+                    .Sum(id => estimates.Single(e => e.userStoryId == id).estimate ?? 0);
+            }
+            else
+            {
+                return 5;
+            }
         }
 
         public static IReadOnlyCollection<Guid> Prune(

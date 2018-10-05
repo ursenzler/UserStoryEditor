@@ -1,6 +1,7 @@
 ﻿namespace UserStoryEditor.WebApi.Specs
 {
     using System;
+    using FakeItEasy;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.DependencyInjection;
@@ -14,16 +15,20 @@
 
         protected WebsiteHttpClient Client { get; private set; }
 
+        protected IRootFactory RootFactory { get; private set; }
+
         [Background]
         public void Background()
         {
             "Server is running".x(() =>
                 {
+                    this.RootFactory = new FakeRootFactory();
+
                     var serverHostBuilder = new WebHostBuilder();
                     serverHostBuilder
                         .ConfigureServices(s
                             => s
-                                .AddSingleton(new Backlog()))
+                                .AddSingleton<IRootFactory>(this.RootFactory))
                         .UseStartup<Startup>();
 
                     this.server = new TestServer(serverHostBuilder);

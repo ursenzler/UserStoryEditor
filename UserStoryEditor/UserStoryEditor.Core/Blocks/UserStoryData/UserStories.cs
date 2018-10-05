@@ -1,8 +1,7 @@
-﻿namespace UserStoryEditor.Core.Blocks
+﻿namespace UserStoryEditor.Core.Blocks.UserStoryData
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     public class UserStories
     {

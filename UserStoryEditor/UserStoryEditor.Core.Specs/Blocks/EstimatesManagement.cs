@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using UserStoryEditor.Core.Blocks;
+    using UserStoryEditor.Core.Blocks.Estimations;
     using Xbehave;
 
     public class EstimatesManagement
