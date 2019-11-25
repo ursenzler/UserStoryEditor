@@ -2,6 +2,11 @@
 {
     public class UserStory
     {
-        public string Title { get; set; }
+        public UserStory(string title)
+        {
+            Title = title;
+        }
+
+        public string Title { get; }
     }
 }
