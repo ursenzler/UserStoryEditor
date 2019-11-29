@@ -5,6 +5,11 @@
       <e p="packages" t="ExcludeRecursive" />
       <e p="UserStoryEditor.Core" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Estimate.cs" t="Include" />
+        <e p="Estimates.cs" t="Include" />
+        <e p="IEstimatesPersistor.cs" t="Include" />
+        <e p="IRelationsPersistor.cs" t="Include" />
+        <e p="maximasummer.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netstandard2.0" t="Include">
@@ -12,8 +17,11 @@
             </e>
           </e>
         </e>
+        <e p="ProductBacklog.cs" t="Include" />
+        <e p="Relations.cs" t="Include" />
+        <e p="Summer.cs" t="Include" />
+        <e p="UserStory.cs" t="Include" />
         <e p="UserStoryEditor.Core.csproj" t="IncludeRecursive" />
-        <e p="UserStoryEditor.cs" t="Include" />
       </e>
       <e p="UserStoryEditor.Core.Facts" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -24,10 +32,14 @@
             </e>
           </e>
         </e>
+        <e p="RelationsFacts.cs" t="Include" />
         <e p="SmokeFacts.cs" t="Include" />
+        <e p="SummerFacts.cs" t="Include" />
+        <e p="SummerMaximaFacts.cs" t="Include" />
         <e p="UserStoryEditor.Core.Facts.csproj" t="IncludeRecursive" />
       </e>
       <e p="UserStoryEditor.Core.Specs" t="IncludeRecursive">
+        <e p="AuditTrailSpecification.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -37,9 +49,27 @@
           </e>
         </e>
         <e p="SmokeSpecs.cs" t="Include" />
+        <e p="UserStoriesManagement.cs" t="Include" />
         <e p="UserStoryEditor.Core.Specs.csproj" t="IncludeRecursive" />
+        <e p="UserStoryPersistence.cs" t="Include" />
       </e>
       <e p="UserStoryEditor.sln" t="IncludeFlat" />
+      <e p="UserStoryEditor.Testing" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Class1.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="UserStoryEditor.Testing.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Parsers.cs" t="Include" />
+        <e p="ProductBacklogBuilder.cs" t="Include" />
+        <e p="RealFakeEstimatesPersistor.cs" t="Include" />
+        <e p="RealFakeRelationsPersistor.cs" t="Include" />
+        <e p="UserStoryEditor.Testing.csproj" t="IncludeRecursive" />
+      </e>
       <e p="UserStoryEditor.WebApi" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />

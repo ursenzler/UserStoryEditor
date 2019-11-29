@@ -11,10 +11,10 @@
     [ApiController]
     public class UserStoryEditorController : ControllerBase
     {
-        private readonly UserStoryEditor userStoryEditor;
+        private readonly ProductBacklog userStoryEditor;
 
         public UserStoryEditorController(
-            UserStoryEditor userStoryEditor)
+            ProductBacklog userStoryEditor)
         {
             this.userStoryEditor = userStoryEditor;
         }
@@ -23,7 +23,8 @@
         public ActionResult<int> GetEstimation()
         {
             return this.userStoryEditor
-                .GetEstimation();
+                .GetEstimation()
+                .Value;
         }
 
         [HttpPost("adduserstory")]
@@ -31,7 +32,8 @@
         {
             this.userStoryEditor
                 .AddUserStory(
-                    userStory.Title);
+                    Guid.NewGuid(),
+                    new Estimate(17));
 
             return this.Ok();
         }

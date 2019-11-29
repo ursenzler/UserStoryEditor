@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using System.Collections.Generic;
+using Microsoft.Extensions.Hosting;
 
 namespace UserStoryEditor.WebApi
 {
@@ -24,8 +25,12 @@ namespace UserStoryEditor.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.Add(new ServiceDescriptor(
-                typeof(UserStoryEditor),
-                typeof(UserStoryEditor),
+                typeof(ProductBacklog),
+                typeof(ProductBacklog),
+                ServiceLifetime.Singleton));
+            services.Add(new ServiceDescriptor(
+                typeof(List<string>),
+                typeof(List<string>),
                 ServiceLifetime.Singleton));
         }
 

@@ -1,4 +1,6 @@
-﻿namespace UserStoryEditor.WebApi.Specs
+﻿using System.Collections.Generic;
+
+namespace UserStoryEditor.WebApi.Specs
 {
     using System;
     using Microsoft.AspNetCore.Hosting;
@@ -22,7 +24,10 @@
                     serverHostBuilder
                         .ConfigureServices(s
                             => s
-                                .AddSingleton(new UserStoryEditor()))
+                                .AddSingleton(new ProductBacklog(
+                                    new List<string>(),
+                                    new FakePersistor(),
+                                    new RealFakeEstimatesPersistor())))
                         .UseStartup<Startup>();
 
                     this.server = new TestServer(serverHostBuilder);

@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserStoryEditor.Core.Specs"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserStoryEditor.WebApi.Specs", "UserStoryEditor.WebApi.Specs\UserStoryEditor.WebApi.Specs.csproj", "{6CF3EC16-4B4F-4A5D-BADF-7287F08B8BC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserStoryEditor.Testing", "UserStoryEditor.Testing\UserStoryEditor.Testing.csproj", "{A5BC065F-6CB0-427D-BCA7-52ECE9200B34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6CF3EC16-4B4F-4A5D-BADF-7287F08B8BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CF3EC16-4B4F-4A5D-BADF-7287F08B8BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CF3EC16-4B4F-4A5D-BADF-7287F08B8BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5BC065F-6CB0-427D-BCA7-52ECE9200B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5BC065F-6CB0-427D-BCA7-52ECE9200B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5BC065F-6CB0-427D-BCA7-52ECE9200B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5BC065F-6CB0-427D-BCA7-52ECE9200B34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

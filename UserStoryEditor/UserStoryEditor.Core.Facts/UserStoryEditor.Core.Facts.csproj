@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UserStoryEditor.Core\UserStoryEditor.Core.csproj" />
+    <ProjectReference Include="..\UserStoryEditor.Testing\UserStoryEditor.Testing.csproj" />
   </ItemGroup>
 
 </Project>
